@@ -5,7 +5,6 @@ import shutil
 from contextlib import AsyncExitStack
 from typing import Any
 
-from core.configuration import Configuration
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
 from .tool import Tool
@@ -134,7 +133,7 @@ class Server:
 # contains Servers
 class ToolBox:
     def __init__(self, server_config: dict[str, Any]):
-        self.servers = [
+        self.servers : list[Server] = [
             Server(name, srv_config)
             for name, srv_config in server_config["mcpServers"].items()
         ]
@@ -226,7 +225,7 @@ class ToolBox:
                         "function": {
                             "name": tool.name,
                             "description": tool.description,
-                            "parameters": tool.inputSchema,
+                            "parameters": tool.input_schema,
                         },
                     }
                 )
