@@ -133,7 +133,7 @@ class Server:
 # contains Servers
 class ToolBox:
     def __init__(self, server_config: dict[str, Any]):
-        self.servers : list[Server] = [
+        self.servers: list[Server] = [
             Server(name, srv_config)
             for name, srv_config in server_config["mcpServers"].items()
         ]
